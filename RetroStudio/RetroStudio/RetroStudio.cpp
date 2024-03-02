@@ -66,7 +66,7 @@ BOOL CMainApp::InitInstance()
 	// Changez la clé de Registre sous laquelle nos paramètres sont enregistrés
 	// TODO: modifiez cette chaîne avec des informations appropriées,
 	// telles que le nom de votre société ou organisation
-	SetRegistryKey(_T("Applications locales générées par AppWizard"));
+	SetRegistryKey(_T("Retro Technique"));
 	LoadStdProfileSettings(4);  // Charge les options de fichier INI standard (y compris les derniers fichiers utilisés)
 
 

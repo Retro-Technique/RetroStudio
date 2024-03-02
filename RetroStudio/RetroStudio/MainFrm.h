@@ -1,6 +1,4 @@
-
-// MainFrm.h : interface de la classe CMainFrame
-//
+#include "ConsolePane.h"
 
 #pragma once
 
@@ -31,9 +29,10 @@ public:
 #endif
 
 protected:  // membres incorporés de la barre de contrôle
-	CMFCMenuBar       m_wndMenuBar;
-	CMFCToolBar       m_wndToolBar;
-	CMFCStatusBar     m_wndStatusBar;
+	CMFCMenuBar		m_wndMenuBar;
+	CMFCToolBar		m_wndToolBar;
+	CMFCStatusBar	m_wndStatusBar;
+	CConsolePane	m_wndConsolePane;
 
 // Fonctions générées de la table des messages
 protected:
@@ -42,6 +41,11 @@ protected:
 	afx_msg LRESULT OnToolbarCreateNew(WPARAM wp, LPARAM lp);
 	DECLARE_MESSAGE_MAP()
 
+public:
+	afx_msg void OnViewConsole();
+	afx_msg void OnUpdateViewConsole(CCmdUI* pCmdUI);
+	afx_msg void OnViewFullscreen();
+	afx_msg void OnUpdateViewFullscreen(CCmdUI* pCmdUI);
 };
 
 

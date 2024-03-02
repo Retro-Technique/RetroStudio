@@ -20,6 +20,10 @@ BEGIN_MESSAGE_MAP(CMainFrame, CFrameWndEx)
 	ON_WM_CREATE()
 	ON_COMMAND(ID_VIEW_CUSTOMIZE, &CMainFrame::OnViewCustomize)
 	ON_REGISTERED_MESSAGE(AFX_WM_CREATETOOLBAR, &CMainFrame::OnToolbarCreateNew)
+	ON_COMMAND(ID_VIEW_CONSOLE, &CMainFrame::OnViewConsole)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_CONSOLE, &CMainFrame::OnUpdateViewConsole)
+	ON_COMMAND(ID_VIEW_FULLSCREEN, &CMainFrame::OnViewFullscreen)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_FULLSCREEN, &CMainFrame::OnUpdateViewFullscreen)
 END_MESSAGE_MAP()
 
 static UINT indicators[] =
@@ -83,13 +87,21 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	}
 	m_wndStatusBar.SetIndicators(indicators, sizeof(indicators)/sizeof(UINT));
 
+	if (!m_wndConsolePane.Create(_T("Console"), this, CRect(0, 0, 200, 200), TRUE, ID_VIEW_CONSOLE, 
+		WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | CBRS_BOTTOM | CBRS_FLOAT_MULTI))
+	{
+		TRACE0("Impossible de créer le volet de la console\n");
+		return -1;
+	}
+
 	// TODO: supprimez ces cinq lignes si vous ne souhaitez pas que la barre d'outils et la barre de menus soient ancrables
 	m_wndMenuBar.EnableDocking(CBRS_ALIGN_ANY);
 	m_wndToolBar.EnableDocking(CBRS_ALIGN_ANY);
+	m_wndConsolePane.EnableDocking(CBRS_ALIGN_ANY);
 	EnableDocking(CBRS_ALIGN_ANY);
 	DockPane(&m_wndMenuBar);
 	DockPane(&m_wndToolBar);
-
+	DockPane(&m_wndConsolePane);
 
 	// activer le comportement de la fenêtre d'ancrage de style Visual Studio 2005
 	CDockingManager::SetDockingMode(DT_SMART);
@@ -107,6 +119,9 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	// activer la personnalisation de barre d'outils rapide (Alt+faire glisser)
 	CMFCToolBar::EnableQuickCustomization();
+
+	EnableFullScreenMode(ID_VIEW_FULLSCREEN);
+	EnableFullScreenMainMenu(TRUE);
 
 	return 0;
 }
@@ -178,3 +193,28 @@ BOOL CMainFrame::LoadFrame(UINT nIDResource, DWORD dwDefaultStyle, CWnd* pParent
 	return TRUE;
 }
 
+void CMainFrame::OnViewConsole()
+{
+	// TODO: ajoutez ici le code de votre gestionnaire de commande
+	ShowPane(&m_wndConsolePane, !(m_wndConsolePane.IsVisible()), FALSE, TRUE);
+
+	RecalcLayout();
+}
+
+void CMainFrame::OnUpdateViewConsole(CCmdUI* pCmdUI)
+{
+	// TODO: ajoutez ici le code du gestionnaire d'interface utilisateur de mise à jour des commandes
+	pCmdUI->SetCheck(m_wndConsolePane.IsVisible());
+}
+
+void CMainFrame::OnViewFullscreen()
+{
+	// TODO: ajoutez ici le code de votre gestionnaire de commande
+	ShowFullScreen();
+}
+
+void CMainFrame::OnUpdateViewFullscreen(CCmdUI* pCmdUI)
+{
+	// TODO: ajoutez ici le code du gestionnaire d'interface utilisateur de mise à jour des commandes
+	pCmdUI->SetCheck(IsFullScreen());
+}
