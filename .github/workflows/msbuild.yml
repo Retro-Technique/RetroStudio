@@ -32,6 +32,6 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v4.3.1
         with:
-          name: RetroCode-${{ matrix.os }}-${{ matrix.platform }}-${{ matrix.configuration }}
+          name: RetroStudio-${{ matrix.os }}-${{ matrix.platform }}-${{ matrix.configuration }}
           path: |
               RetroStudio/${{ matrix.platform }}/${{ matrix.configuration }}/RetroStudio.exe
