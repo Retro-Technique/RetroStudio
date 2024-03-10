@@ -31,6 +31,9 @@ jobs:
           fileName: "v0.1.0.0-alpha.zip"
           out-file-path: "3rdParty"
           extract: true
+
+      - name: dir
+        run: Get-ChildItem -Path "." -Recurse
       
       - name: Add MSBuild to PATH
         uses: microsoft/setup-msbuild@v2
