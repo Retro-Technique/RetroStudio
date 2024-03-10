@@ -1,5 +1,3 @@
-#include "ConsolePane.h"
-
 #pragma once
 
 class CMainFrame : public CFrameWndEx
@@ -29,10 +27,10 @@ public:
 #endif
 
 protected:  // membres incorporés de la barre de contrôle
-	CMFCMenuBar		m_wndMenuBar;
-	CMFCToolBar		m_wndToolBar;
-	CMFCStatusBar	m_wndStatusBar;
-	CConsolePane	m_wndConsolePane;
+	CMFCMenuBar				m_wndMenuBar;
+	CMFCToolBar				m_wndToolBar;
+	CMFCStatusBar			m_wndStatusBar;
+	retro::mfc::CLoggerPane	m_wndConsolePane;
 
 // Fonctions générées de la table des messages
 protected:

@@ -103,6 +103,8 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	DockPane(&m_wndToolBar);
 	DockPane(&m_wndConsolePane);
 
+	theApp.Log().RegisterObserver(&m_wndConsolePane);
+
 	// activer le comportement de la fenêtre d'ancrage de style Visual Studio 2005
 	CDockingManager::SetDockingMode(DT_SMART);
 	// activer le comportement de masquage automatique de la fenêtre d'ancrage de style Visual Studio 2005

@@ -19,6 +19,14 @@ class CMainApp : public CWinAppEx
 public:
 	CMainApp() noexcept;
 
+private:
+
+	retro::core::CLogger m_Logger;
+
+public:
+
+	const retro::core::CLogger& Log() const { return m_Logger; }
+	retro::core::CLogger& Log() { return m_Logger; }
 
 // Substitutions
 public:
