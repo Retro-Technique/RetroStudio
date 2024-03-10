@@ -85,7 +85,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		TRACE0("Impossible de créer la barre d'état\n");
 		return -1;      // échec de la création
 	}
-	m_wndStatusBar.SetIndicators(indicators, sizeof(indicators)/sizeof(UINT));
+	m_wndStatusBar.SetIndicators(indicators, sizeof(indicators) / sizeof(UINT));
 
 	if (!m_wndConsolePane.Create(_T("Console"), this, CRect(0, 0, 200, 200), TRUE, ID_VIEW_CONSOLE, 
 		WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | CBRS_BOTTOM | CBRS_FLOAT_MULTI))
